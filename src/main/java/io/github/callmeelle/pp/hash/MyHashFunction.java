@@ -1,7 +1,7 @@
 package io.github.callmeelle.pp.hash;
 
 /**
- * TODO elle This type ...
+ * A simple and bad hash algorithm using the digit sum
  *
  */
 public class MyHashFunction implements HashFunction {

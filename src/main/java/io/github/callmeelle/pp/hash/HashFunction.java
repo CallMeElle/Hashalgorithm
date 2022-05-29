@@ -8,8 +8,9 @@ import java.nio.charset.StandardCharsets;
 public interface HashFunction {
 
   /**
+   * Hash String input
    *
-   * @param input
+   * @param input User-Input/Message
    * @return
    */
   default byte[] hash(String input) {
@@ -18,9 +19,8 @@ public interface HashFunction {
     return hash(bytes);
   }
 
-  /**
-   * @return the computed hash of the data that has been provided by one or multiple calls to
-   *         {@link #update(byte[], int, int)}.
+  /*
+   * hash input in byte[]-form
    */
   byte[] hash(byte[] input);
 
