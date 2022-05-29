@@ -25,14 +25,6 @@ public class HashProgram {
       System.out.println("Text to Hash: ");
       String input = myObj.nextLine();
 
-      // check if input is 1 string
-      // only useful when not reading console input
-      if (args.length != 1) {
-        System.err.println("ERROR: Text to hash has to be provided as single argument!");
-        System.out.println("Usage: " + HashProgram.class.getName() + " \"<your text to hash>\"");
-        System.exit(-1);
-      }
-
       HashFunction hashFunction = newHashFunction();
       byte[] hash = hashFunction.hash(input);
       System.out.println("Hash: " + HashToHex.toHex(hash));
