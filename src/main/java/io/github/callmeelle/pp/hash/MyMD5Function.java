@@ -39,9 +39,6 @@ public class MyMD5Function implements HashFunction {
   @Override
   public byte[] hash(byte[] input) {
 
-    // Print original message
-    // System.out.println(HashToHex.formatHex(input));
-
     // initialize Variables
     Payload payload = new Payload(input);
     long[] M = new long[16];
@@ -55,6 +52,7 @@ public class MyMD5Function implements HashFunction {
     // divide padded message in 64 byte blocks
     for (int payloadIndex = 0; payloadIndex < payload.getPaddedLength(); payloadIndex = payloadIndex + 64) {
 
+      // break down in 4 byte blocks
       for (int i = 0; i < M.length; i++) {
         M[i] = payload.getLong(payloadIndex + i * 4);
       }
@@ -65,12 +63,8 @@ public class MyMD5Function implements HashFunction {
       long c = c0;
       long d = d0;
 
-      // For each 64-Byte block
+      // for each 64 byte block do
       for (int i = 0; i < 64; i++) {
-        // System.out.println("A = " + a);
-        // System.out.println("B = " + b);
-        // System.out.println("C = " + c);
-        // System.out.println("D = " + d);
         long F = 0;
         int g = 0;
 
@@ -97,15 +91,11 @@ public class MyMD5Function implements HashFunction {
 
       }
 
-      // new buffers for next 64-byte block of the message
+      // new buffers for next 64-byte block of the message or final hash
       a0 = a0 + a;
       b0 = b0 + b;
       c0 = c0 + c;
       d0 = d0 + d;
-      // System.out.println("A0 = " + a0);
-      // System.out.println("B0 = " + b0);
-      // System.out.println("C0 = " + c0);
-      // System.out.println("D0 = " + d0);
     }
 
     // return final hash as byte[]
@@ -182,9 +172,8 @@ public class MyMD5Function implements HashFunction {
 
     /**
      *
-     * @return
+     * @return complete length of message with padding (+length)
      */
-    // complete length of message with padding (+length)
     public int getPaddedLength() {
 
       return this.zeroPaddingEnd + 8;
@@ -192,8 +181,8 @@ public class MyMD5Function implements HashFunction {
 
     /**
      *
-     * @param i
-     * @return
+     * @param i number of specific byte from padded message
+     * @return byte i
      */
     // receive byte for hashing algorithm
     public byte getByte(int i) {
@@ -212,6 +201,11 @@ public class MyMD5Function implements HashFunction {
       }
     }
 
+    /**
+     *
+     * @param i byte from padded message
+     * @return long consisting of 4 bytes from message
+     */
     public long getLong(int i) {
 
       return convertBytesToLong(getByte(i), getByte(i + 1), getByte(i + 2), getByte(i + 3));

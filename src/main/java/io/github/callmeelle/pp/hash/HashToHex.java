@@ -17,9 +17,9 @@ public class HashToHex {
 
     char[] buf = new char[data.length * 2];
     int i = 0;
-    for (byte b : data) {
-      buf[i++] = HEX[(b & 0xF0) >> 4];
-      buf[i++] = HEX[b & 0x0F];
+    for (int j = 0; j < data.length; j++) {
+      buf[i++] = HEX[(data[j] & 0xF0) >> 4];
+      buf[i++] = HEX[data[j] & 0x0F];
     }
     return new String(buf);
   }

@@ -16,12 +16,17 @@ public class HashProgram {
     // return new DigestHashFunction("MD5");
   }
 
+  /**
+   * @param args Argument from "Run Configurations"
+   */
   public static void main(String[] args) {
 
     try (Scanner myObj = new Scanner(System.in)) {
       System.out.println("Text to Hash: ");
       String input = myObj.nextLine();
 
+      // check if input is 1 string
+      // only useful when not reading console input
       if (args.length != 1) {
         System.err.println("ERROR: Text to hash has to be provided as single argument!");
         System.out.println("Usage: " + HashProgram.class.getName() + " \"<your text to hash>\"");
