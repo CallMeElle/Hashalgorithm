@@ -1,7 +1,7 @@
 package io.github.callmeelle.pp.hash;
 
 /**
- * A simple and bad hash algorithm using the digit sum
+ * Digit sum (Quersumme) Hash. A simple hash algorithm for comparison
  *
  */
 public class MyHashFunction implements HashFunction {

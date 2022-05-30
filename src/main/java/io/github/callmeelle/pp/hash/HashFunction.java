@@ -11,7 +11,7 @@ public interface HashFunction {
    * Hash String input
    *
    * @param input User-Input/Message
-   * @return
+   * @return hash byte[] input
    */
   default byte[] hash(String input) {
 

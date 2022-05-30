@@ -87,11 +87,11 @@ public class MyMD5Function implements HashFunction {
         a = d;
         d = c;
         c = b;
-        b = b + leftrotate(mask(F), S[i]); // is it a rotate or a shift?????
+        b = b + leftrotate(mask(F), S[i]);
 
       }
 
-      // new buffers for next 64-byte block of the message or final hash
+      // new buffers for next 64-byte block of the message or final hash parts
       a0 = a0 + a;
       b0 = b0 + b;
       c0 = c0 + c;
@@ -113,20 +113,26 @@ public class MyMD5Function implements HashFunction {
   }
 
   /**
-   * @param value
-   * @param bits
-   * @return
+   * @param value -> long which should be rotated
+   * @param bits -> number of bitwise rotates to left
+   * @return rotated long
    */
   private static long leftrotate(long value, byte bits) {
 
     return mask((value << bits) | value >>> (32 - bits));
   }
 
+  /**
+   *
+   * @param b byte
+   * @return masked byte
+   */
   private static long maskByte(byte b) {
 
     return (b & 0xFF);
   }
 
+  // shift the 4-padded-message-bytes for byte-block that they form a long
   private static long convertBytesToLong(byte b1, byte b2, byte b3, byte b4) {
 
     return maskByte(b1) | maskByte(b2) << 8 | maskByte(b3) << 16 | maskByte(b4) << 24;
@@ -153,7 +159,8 @@ public class MyMD5Function implements HashFunction {
     private final int zeroPaddingEnd;
 
     /**
-     * The constructor.
+     * The constructor. Payload returns the specific byte[] from the padded message that are necessary to calculate the
+     * hash -> M[]
      */
     public Payload(byte[] data) {
 
@@ -203,7 +210,7 @@ public class MyMD5Function implements HashFunction {
 
     /**
      *
-     * @param i byte from padded message
+     * @param i specific byte from padded message
      * @return long consisting of 4 bytes from message
      */
     public long getLong(int i) {

@@ -1,8 +1,9 @@
 package io.github.callmeelle.pp.hash;
+
 import java.security.MessageDigest;
 
 /**
- * TODO elle This type ...
+ * creates MD5 Hash using Message.Digest MD5 from Java to compare with my own MD5 implementation
  *
  */
 public class DigestHashFunction implements HashFunction {

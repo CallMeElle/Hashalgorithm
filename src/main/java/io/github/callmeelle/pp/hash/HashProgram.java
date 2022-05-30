@@ -2,10 +2,6 @@ package io.github.callmeelle.pp.hash;
 
 import java.util.Scanner;
 
-/**
- * TODO elle This type ...
- *
- */
 public class HashProgram {
 
   private static HashFunction newHashFunction() {
@@ -17,7 +13,7 @@ public class HashProgram {
   }
 
   /**
-   * @param args Argument from "Run Configurations"
+   * @param args Argument from "Run Configurations" get Input, start hashFunction, output Hash
    */
   public static void main(String[] args) {
 
